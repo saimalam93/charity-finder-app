@@ -1,9 +1,14 @@
 import { useState } from "react";
 import "./App.css";
+import Nav from "./components/Nav";
+import List from "./components/List";
 
 function App() {
   return (
-    <h1 className="text-3xl font-bold underline text-center">Hello world!</h1>
+    <>
+      <Nav />
+      <List />
+    </>
   );
 }
 
