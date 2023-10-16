@@ -1,21 +1,37 @@
-const Card = () => {
+import { Charity } from "../types/charity.types";
+
+type Props = {
+  charity: Charity;
+};
+
+const elipsisGenerator = (text: string, length: number) => {
+  return text.length > length ? `${text.slice(0, length)} . . .` : text;
+};
+
+const Card = ({ charity }: Props) => {
   return (
     <>
       <div className="flex flex-col bg-white-100 rounded-lg shadow-xl overflow-hidden p-4">
         <div className="flex-shrink-0 my-4">
           <img
             className="h-20 w-full object-contain"
-            src="https://cdn.pixabay.com/photo/2016/08/29/13/55/heart-1628313_1280.png"
-            alt="Favourites"
+            src={charity.logoUrl}
+            alt={charity.name}
           />
           <div className="flex justify-center border-b-4">
-            {/* Charity Title here */}
-            <p className="text-2xl font-bold my-4">Charity Title</p>
+            <p className="text-2xl font-bold my-4">{charity.name}</p>
           </div>
           <div className="flex justify-center">
-            {/* Charity Location here */}
-
-            <p className="text-md italic mt-2">Charity Location</p>
+            <p className="text-md italic mt-2">
+              {charity.location ? charity.location : charity.locationAddress}
+            </p>
+          </div>
+          <div className="flex justify-center">
+            {charity.description ? (
+              <p className="text-md italic mt-2">
+                {elipsisGenerator(charity.description, 100)}
+              </p>
+            ) : null}
           </div>
         </div>
       </div>
